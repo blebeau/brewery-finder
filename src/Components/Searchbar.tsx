@@ -5,15 +5,33 @@ import Dropdown from "react-bootstrap/Dropdown";
 const Searchbar = () => {
   const [input, setInput] = useState<string>("");
   const [search, setSearch] = useState<string>("");
+  const [searchType, setSearchType] = useState<string>("city");
 
   const { running, data } = useFetch(input);
 
-  console.log("data", data);
-
   return (
-    <div>
-      <input placeholder="Search" onChange={(e) => setInput(e.target.value)} />
-      <button onClick={() => setSearch(search)}>Search</button>
+    <div style={{ height: "10vh", width: "50vw" }}>
+      <div
+        style={{
+          display: "flex",
+        }}
+      >
+        <input
+          placeholder="Search"
+          onChange={(e) => setInput(e.target.value)}
+        />
+        <select onChange={(e) => setSearchType(e.target.value)}>
+          <option value={"city"}>City</option>
+          <option value={"country"}>Country</option>
+          <option value={"name"}>Name</option>
+        </select>
+        <button
+          style={{ marginLeft: "3px", marginRight: "3px" }}
+          onClick={() => setSearch(search)}
+        >
+          Search
+        </button>
+      </div>
     </div>
   );
 };
