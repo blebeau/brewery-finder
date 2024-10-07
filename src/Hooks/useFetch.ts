@@ -5,8 +5,7 @@ const useFetch = (query: string) => {
   const [data, setData] = useState();
 
   const fetchData = async () => {
-    console.log("in fetch data");
-    fetch(`https://api.openbrewerydb.org/v1/breweries/${query}`)
+    fetch(`https://api.openbrewerydb.org/v1/breweries/?${query}`)
       .then((response) => response.json())
       .then((data) => {
         setData(data);

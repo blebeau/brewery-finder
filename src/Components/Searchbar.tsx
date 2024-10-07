@@ -7,7 +7,7 @@ const Searchbar = () => {
   const [search, setSearch] = useState<string>("");
   const [searchType, setSearchType] = useState<string>("city");
 
-  const { running, data } = useFetch(input);
+  const { running, data } = useFetch(searchType + input);
 
   return (
     <div style={{ height: "10vh", width: "50vw" }}>
@@ -21,9 +21,9 @@ const Searchbar = () => {
           onChange={(e) => setInput(e.target.value)}
         />
         <select onChange={(e) => setSearchType(e.target.value)}>
-          <option value={"city"}>City</option>
-          <option value={"country"}>Country</option>
-          <option value={"name"}>Name</option>
+          <option value={"by_city"}>City</option>
+          <option value={"by_country"}>Country</option>
+          <option value={"by_name"}>Name</option>
         </select>
         <button
           style={{ marginLeft: "3px", marginRight: "3px" }}
