@@ -1,0 +1,18 @@
+.barList {
+  height: 100%;
+  /* background-color: wh; */
+  width: 50%;
+}
+
+.barTag {
+  margin: 5px;
+  border-radius: 10px;
+}
+
+.even {
+  background: lightgray;
+}
+
+.odd {
+  background-color: antiquewhite;
+}

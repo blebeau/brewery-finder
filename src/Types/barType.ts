@@ -1,4 +1,5 @@
 export type barType = {
+  id: string;
   name: string;
   type: string;
   phone: string;
@@ -6,4 +7,5 @@ export type barType = {
   city: string;
   state: string;
   street: string;
+  index: number;
 };
