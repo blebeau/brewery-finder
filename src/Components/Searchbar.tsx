@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useFetch from "../Hooks/useFetch";
 import Dropdown from "react-bootstrap/Dropdown";
+import BarList from "./BarList";
 
 const Searchbar = () => {
   const [input, setInput] = useState<string>("");
@@ -8,7 +9,7 @@ const Searchbar = () => {
   const [searchType, setSearchType] = useState<string>("by_city=");
 
   const { running, data } = useFetch(searchType + input);
-
+  console.log("data - in the search bar", data);
   return (
     <div style={{ height: "10vh", width: "50vw" }}>
       <div
@@ -32,6 +33,7 @@ const Searchbar = () => {
           Search
         </button>
       </div>
+      <BarList bars={data} />
     </div>
   );
 };
