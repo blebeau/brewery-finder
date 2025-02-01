@@ -8,7 +8,7 @@ const Searchbar = () => {
   const [search, setSearch] = useState<string>("");
   const [searchType, setSearchType] = useState<string>("by_city=");
 
-  const { running, data } = useFetch(searchType + input);
+  const data = useFetch(searchType + input);
   console.log("data - in the search bar", data);
   return (
     <div style={{ height: "10vh", width: "50vw" }}>

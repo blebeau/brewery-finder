@@ -1,4 +1,4 @@
-export type barType = {
+export interface barType {
   id: string;
   name: string;
   type: string;
@@ -8,4 +8,4 @@ export type barType = {
   state: string;
   street: string;
   index: number;
-};
+}
