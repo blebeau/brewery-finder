@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { barType } from "../Types/barType";
 
 const useFetch = (query: string) => {
-  console.log("query", query);
-
   const [running, setRunning] = useState<boolean>(false);
   const [data, setData] = useState<barType[]>([]);
 
@@ -20,7 +18,6 @@ const useFetch = (query: string) => {
 
     fetchData();
   }, [query]);
-  console.log("data", data);
 
   return data;
 };
