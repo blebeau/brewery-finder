@@ -28,7 +28,9 @@ const BarList = ({ bars }: bars) => {
           ))}
         </div>
       ) : (
-        <div>Closing time! No Bars Found</div>
+        <div className="noResults">
+          <p>Closing time! No Bars Found</p>
+        </div>
       )}
     </div>
   );
