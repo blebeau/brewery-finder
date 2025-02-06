@@ -1,6 +1,5 @@
 import { useState } from "react";
 import useFetch from "../Hooks/useFetch";
-import Dropdown from "react-bootstrap/Dropdown";
 import BarList from "./BarList";
 
 const Searchbar = () => {
@@ -18,42 +17,19 @@ const Searchbar = () => {
         }}
       >
         <input
-          style={{
-            width: "300px",
-            height: "50px",
-            borderRadius: "20px",
-            marginLeft: "30px",
-            backgroundColor: "#79c2d0",
-          }}
+          className="input"
           placeholder="Search"
           onChange={(e) => setInput(e.target.value)}
         />
         <select
-          style={{
-            width: "100px",
-            height: "50px",
-            borderRadius: "20px",
-            marginLeft: "30px",
-          }}
+          className="select"
           onChange={(e) => setSearchType(e.target.value)}
         >
           <option value={"by_city="}>City</option>
           <option value={"by_country="}>Country</option>
           <option value={"by_name="}>Name</option>
         </select>
-        <button
-          style={{
-            width: "100px",
-            height: "50px",
-            borderRadius: "20px",
-            marginLeft: "30px",
-            marginRight: "3px",
-            backgroundColor: "#79c2d0",
-          }}
-          onClick={() => setSearch(search)}
-        >
-          Search
-        </button>
+        <button onClick={() => setSearch(search)}>Search</button>
       </div>
       <BarList bars={data} />
     </div>
