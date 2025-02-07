@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useFetch from "../Hooks/useFetch";
 import BarList from "./BarList";
+import "../styles/barStyles.css";
 
 const Searchbar = () => {
   const [input, setInput] = useState<string>("");
@@ -31,7 +32,13 @@ const Searchbar = () => {
         </select>
         <button onClick={() => setSearch(search)}>Search</button>
       </div>
-      <BarList bars={data} />
+      {data.length > 0 ? (
+        <BarList bars={data} />
+      ) : (
+        <div className="noResults">
+          <p>Closing time! No Bars Found</p>
+        </div>
+      )}
     </div>
   );
 };
