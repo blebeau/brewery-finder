@@ -35,7 +35,7 @@ const Searchbar = () => {
       {data.length > 0 ? (
         <BarList bars={data} />
       ) : (
-        <div className="noResults">
+        <div data-testid="noResults" className="noResults">
           <p>Closing time! No Bars Found</p>
         </div>
       )}
