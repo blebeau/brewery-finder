@@ -1,14 +1,30 @@
-import { useState } from "react";
-import useFetch from "../Hooks/useFetch";
+import { useEffect, useState } from "react";
+// import useFetch from "../Hooks/useFetch";
 import BarList from "./BarList";
 import "../styles/barStyles.css";
 
 const Searchbar = () => {
   const [input, setInput] = useState<string>("");
-  const [search, setSearch] = useState<string>("");
   const [searchType, setSearchType] = useState<string>("by_city=");
+  const [buttonClick, setButtonClick] = useState("");
+  const [data, setData] = useState<any[]>([]);
 
-  const data = useFetch(searchType + input);
+  const handleClick = () => {
+    setButtonClick(input);
+  };
+  // const data = useFetch(searchType + input);
+  useEffect(() => {
+    fetch(
+      `https://api.openbrewerydb.org/v1/breweries?${
+        searchType + input
+      }&per_page=10`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setData(data);
+      });
+  }, [buttonClick]);
+
   return (
     <div style={{ height: "10vh" }}>
       <div
@@ -30,7 +46,7 @@ const Searchbar = () => {
           <option value={"by_country="}>Country</option>
           <option value={"by_name="}>Name</option>
         </select>
-        <button onClick={() => setSearch(search)}>Search</button>
+        <button onClick={handleClick}>Search</button>
       </div>
       {data.length > 0 ? (
         <BarList bars={data} />
