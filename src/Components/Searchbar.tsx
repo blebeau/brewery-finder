@@ -2,27 +2,31 @@ import { useEffect, useState } from "react";
 // import useFetch from "../Hooks/useFetch";
 import BarList from "./BarList";
 import "../styles/barStyles.css";
+import { barType } from "../Types/barType";
 
 const Searchbar = () => {
   const [input, setInput] = useState<string>("");
-  const [searchType, setSearchType] = useState<string>("by_city=");
+  const [searchType, setSearchType] = useState<string>("by_name=");
   const [buttonClick, setButtonClick] = useState("");
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<barType[]>([]);
+  const [skip, setSkip] = useState<boolean>(true);
 
   const handleClick = () => {
     setButtonClick(input);
   };
-  // const data = useFetch(searchType + input);
+
   useEffect(() => {
-    fetch(
-      `https://api.openbrewerydb.org/v1/breweries?${
-        searchType + input
-      }&per_page=10`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setData(data);
-      });
+    if (skip) setSkip(false);
+    else
+      fetch(
+        `https://api.openbrewerydb.org/v1/breweries?${
+          searchType + input
+        }&per_page=10`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setData(data);
+        });
   }, [buttonClick]);
 
   return (
@@ -42,9 +46,9 @@ const Searchbar = () => {
           className="select"
           onChange={(e) => setSearchType(e.target.value)}
         >
+          <option value={"by_name="}>Name</option>
           <option value={"by_city="}>City</option>
           <option value={"by_country="}>Country</option>
-          <option value={"by_name="}>Name</option>
         </select>
         <button onClick={handleClick}>Search</button>
       </div>
