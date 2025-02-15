@@ -35,6 +35,8 @@ const Searchbar = () => {
         style={{
           height: "50px",
           paddingBottom: "10px",
+          display: "inline-flex",
+          paddingTop: "5px",
         }}
       >
         <input
@@ -46,11 +48,13 @@ const Searchbar = () => {
           className="select"
           onChange={(e) => setSearchType(e.target.value)}
         >
-          <option value={"by_name="}>Name</option>
           <option value={"by_city="}>City</option>
           <option value={"by_country="}>Country</option>
+          <option value={"by_name="}>Name</option>
         </select>
-        <button onClick={handleClick}>Search</button>
+        <button className="search_button" type="submit" onClick={handleClick}>
+          Search
+        </button>
       </div>
       {data.length > 0 ? (
         <BarList bars={data} />
