@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import useFetch from "../Hooks/useFetch";
 import BarList from "./BarList";
 import "../styles/barStyles.css";
 import { barType } from "../Types/barType";
