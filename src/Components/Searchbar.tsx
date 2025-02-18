@@ -41,6 +41,8 @@ const Searchbar = () => {
         <input
           className="input"
           placeholder="Search"
+          aria-label="input"
+          data-testid="search-input"
           onChange={(e) => setInput(e.target.value)}
         />
         <select
@@ -51,7 +53,12 @@ const Searchbar = () => {
           <option value={"by_country="}>Country</option>
           <option value={"by_name="}>Name</option>
         </select>
-        <button className="search_button" type="submit" onClick={handleClick}>
+        <button
+          aria-label="Search"
+          className="search_button"
+          type="submit"
+          onClick={handleClick}
+        >
           Search
         </button>
       </div>
