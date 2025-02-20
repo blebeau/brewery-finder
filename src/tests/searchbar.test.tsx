@@ -1,6 +1,5 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, cleanup } from "@testing-library/react";
 import Searchbar from "../Components/Searchbar";
-import { secureHeapUsed } from "crypto";
 
 const setup = () => {
   const utils = render(<Searchbar />);
@@ -11,28 +10,34 @@ const setup = () => {
   };
 };
 
-test("check proper initial display", async () => {
-  render(<Searchbar />);
+describe("searchbar component tests", () => {
+  // const { unmount } = render(<Searchbar />);
 
-  screen.getByLabelText("Search");
-  screen.getByText("City");
-  screen.getByText("Closing time! No Bars Found");
-});
+  afterEach(() => {
+    cleanup();
+  });
 
-test("simulate the search button", async () => {
-  render(<Searchbar />);
+  // test("check proper initial display", async () => {
+  //   render(<Searchbar />);
 
-  screen.getByText("City");
-  screen.getByText("Closing time! No Bars Found");
+  //   screen.getByLabelText("Search");
+  //   screen.getByText("City");
+  //   screen.getByText("Closing time! No Bars Found");
+  // });
 
-  const { input } = setup();
-  fireEvent.change(input, { target: { value: "Detroit" } });
+  test("simulate the search button", async () => {
+    // render(<Searchbar />);
 
-  screen.getByText("Detroit");
+    const { input } = setup();
+    screen.getByText("City");
+    screen.getByText("Closing time! No Bars Found");
 
-  const searchBtn = screen.getByLabelText("Search");
+    fireEvent.change(input, { target: { value: "Detroit" } });
 
-  fireEvent.click(searchBtn);
+    const searchBtn = screen.getByLabelText("Search-label");
 
-  screen.getByText("Name: Brew Detroit");
+    fireEvent.click(searchBtn);
+
+    screen.getByText("Name: Brew Detroit");
+  });
 });

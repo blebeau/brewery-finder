@@ -54,7 +54,7 @@ const Searchbar = () => {
           <option value={"by_name="}>Name</option>
         </select>
         <button
-          aria-label="Search"
+          aria-label="Search-label"
           className="search_button"
           type="submit"
           onClick={handleClick}

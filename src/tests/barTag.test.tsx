@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, cleanup } from "@testing-library/react";
 import BarTag from "../Components/BarTag";
 
 const testData1 = {
@@ -13,23 +13,29 @@ const testData1 = {
   index: 0,
 };
 
-test("check bartag initial render", async () => {
-  render(
-    <BarTag
-      id={testData1.id}
-      name={testData1.name}
-      type={testData1.type}
-      phone={testData1.phone}
-      website_url={testData1.website_url}
-      city={testData1.city}
-      state={testData1.state}
-      street={testData1.street}
-      index={testData1.index}
-    />
-  );
+describe("bartag component tests", () => {
+  afterEach(() => {
+    cleanup();
+  });
 
-  screen.getByText("Name: MadTree Brewing 2.0");
-  screen.getByText("City and State: Cincinnati, Ohio");
-  screen.getByText("Phone number: 5138368733");
-  screen.getByText("Website: http://www.madtreebrewing.com");
+  test("check bartag initial render", async () => {
+    render(
+      <BarTag
+        id={testData1.id}
+        name={testData1.name}
+        type={testData1.type}
+        phone={testData1.phone}
+        website_url={testData1.website_url}
+        city={testData1.city}
+        state={testData1.state}
+        street={testData1.street}
+        index={testData1.index}
+      />
+    );
+
+    screen.getByText("Name: MadTree Brewing 2.0");
+    screen.getByText("City and State: Cincinnati, Ohio");
+    screen.getByText("Phone number: 5138368733");
+    screen.getByText("Website: http://www.madtreebrewing.com");
+  });
 });

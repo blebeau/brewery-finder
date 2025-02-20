@@ -11,7 +11,7 @@ const BarList = ({ bars }: bars) => {
     <div className="barList">
       <div>
         {bars.map((bar: barType, index: number) => (
-          <div>
+          <div key={bar.id}>
             <BarTag
               id={bar.id}
               name={bar.name}
