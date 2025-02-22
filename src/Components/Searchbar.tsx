@@ -46,6 +46,7 @@ const Searchbar = () => {
           onChange={(e) => setInput(e.target.value)}
         />
         <select
+          aria-label="Select"
           className="select"
           onChange={(e) => setSearchType(e.target.value)}
         >

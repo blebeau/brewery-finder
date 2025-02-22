@@ -3,7 +3,7 @@ import Searchbar from "../Components/Searchbar";
 
 const setup = () => {
   const utils = render(<Searchbar />);
-  const input = screen.getAllByTestId("search-input")[0];
+  const input = screen.getByLabelText("Select");
   return {
     input,
     ...utils,
@@ -11,33 +11,28 @@ const setup = () => {
 };
 
 describe("searchbar component tests", () => {
-  // const { unmount } = render(<Searchbar />);
-
   afterEach(() => {
     cleanup();
   });
 
-  // test("check proper initial display", async () => {
-  //   render(<Searchbar />);
+  test("check proper initial display", async () => {
+    render(<Searchbar />);
 
-  //   screen.getByLabelText("Search");
-  //   screen.getByText("City");
-  //   screen.getByText("Closing time! No Bars Found");
-  // });
+    screen.getByText("City");
+    screen.getByText("Closing time! No Bars Found");
+  });
 
-  test("simulate the search button", async () => {
-    // render(<Searchbar />);
-
+  test("simulate changing the search type", async () => {
     const { input } = setup();
     screen.getByText("City");
     screen.getByText("Closing time! No Bars Found");
 
-    fireEvent.change(input, { target: { value: "Detroit" } });
+    fireEvent.change(input, { target: { value: "by_country=" } });
 
-    const searchBtn = screen.getByLabelText("Search-label");
+    screen.getByText("Country");
 
-    fireEvent.click(searchBtn);
+    fireEvent.change(input, { target: { value: "by_name" } });
 
-    screen.getByText("Name: Brew Detroit");
+    screen.getByText("Name");
   });
 });
